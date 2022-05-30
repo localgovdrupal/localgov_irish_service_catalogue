@@ -1,0 +1,8 @@
+uuid: 55d155f5-0338-483e-b84c-e593c050c5f6
+langcode: en
+status: true
+dependencies: {  }
+name: 'Irish Service Topic'
+vid: irish_service_topic
+description: ''
+weight: 0

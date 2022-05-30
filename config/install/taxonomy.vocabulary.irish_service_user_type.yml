@@ -1,0 +1,8 @@
+uuid: 0b8b31af-6b40-44d6-b435-dce3ce6f54a9
+langcode: en
+status: true
+dependencies: {  }
+name: 'Irish Service User Type'
+vid: irish_service_user_type
+description: ''
+weight: 0

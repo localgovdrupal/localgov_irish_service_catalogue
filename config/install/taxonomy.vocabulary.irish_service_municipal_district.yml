@@ -1,0 +1,8 @@
+uuid: c536f3ba-0406-40ba-8125-786952e2f3e9
+langcode: en
+status: true
+dependencies: {  }
+name: 'Municipal District'
+vid: irish_service_municipal_district
+description: ''
+weight: 0
