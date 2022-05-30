@@ -1,4 +1,3 @@
-uuid: 7cf8a356-e9b8-4fc1-b9de-a2f23c4185b4
 langcode: en
 status: true
 dependencies:
@@ -22,8 +21,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: sUgrVilcHJmlvooSdnpUE8SuI0R2Z3ZeLtZWLNbNLAQ
 id: node.localgov_services_page.teaser
 targetEntityType: node
 bundle: localgov_services_page

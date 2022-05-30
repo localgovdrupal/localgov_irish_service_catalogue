@@ -1,4 +1,3 @@
-uuid: 6708a729-f959-4e8d-930d-fc53783f512a
 langcode: en
 status: true
 dependencies:
@@ -29,8 +28,6 @@ dependencies:
     - localgov_services_landing
     - text
     - user
-_core:
-  default_config_hash: PxlCilzr6M91yJoAJlyxMn6EdlvOcl7xZFsu1WaDQiA
 id: node.localgov_services_landing.default
 targetEntityType: node
 bundle: localgov_services_landing
