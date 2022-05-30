@@ -1,72 +1,17 @@
-uuid: eed99877-e401-4f52-a0cb-c2b94451f9fc
+uuid: e5ff4e83-a10f-4ee5-ad5d-0508fdfbb206
 langcode: en
 status: true
 dependencies:
-  config:
-    - search_api.server.irish_services_catalogue
-    - core.entity_view_mode.node.search_index
   module:
-    - node
-    - search_api
+    - search_api_db
 id: irish_services_catalogue
 name: 'Irish Services Catalogue'
-description: ''
-read_only: false
-field_settings:
-  rendered_item:
-    label: 'Rendered HTML output'
-    property_path: rendered_item
-    type: text
-    configuration:
-      roles:
-        anonymous: anonymous
-      view_mode:
-        'entity:node':
-          localgov_services_page: search_index
-  status:
-    label: Published
-    datasource_id: 'entity:node'
-    property_path: status
-    type: boolean
-    dependencies:
-      module:
-        - node
-  title:
-    label: Title
-    datasource_id: 'entity:node'
-    property_path: title
-    type: string
-    dependencies:
-      module:
-        - node
-  type:
-    label: 'Content type'
-    datasource_id: 'entity:node'
-    property_path: type
-    type: string
-    dependencies:
-      module:
-        - node
-datasource_settings:
-  'entity:node':
-    bundles:
-      default: false
-      selected:
-        - localgov_services_page
-    languages:
-      default: true
-      selected: {  }
-processor_settings:
-  add_url: {  }
-  aggregated_field: {  }
-  entity_type: {  }
-  language_with_fallback: {  }
-  rendered_item: {  }
-tracker_settings:
-  default:
-    indexing_order: fifo
-options:
-  cron_limit: 50
-  index_directly: true
-  track_changes_in_references: true
-server: irish_services_catalogue
+description: 'Default Irish services catalogue search server. For convenience of installation. Can be used or replaced.'
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 3
+  matching: partial
+  autocomplete:
+    suggest_suffix: true
+    suggest_words: true

@@ -1,0 +1,29 @@
+uuid: 34dddc3f-6e02-4331-aea9-306d21bd47e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.localgov_irish_service_category
+    - node.type.localgov_services_page
+    - taxonomy.vocabulary.irish_service_category
+id: node.localgov_services_page.localgov_irish_service_category
+field_name: localgov_irish_service_category
+entity_type: node
+bundle: localgov_services_page
+label: 'Irish Service Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      irish_service_category: irish_service_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

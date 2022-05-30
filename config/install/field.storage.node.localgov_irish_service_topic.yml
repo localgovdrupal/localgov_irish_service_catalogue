@@ -1,0 +1,20 @@
+uuid: 4a77454b-0110-491c-b687-f7f6980224f2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.localgov_irish_service_topic
+field_name: localgov_irish_service_topic
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
