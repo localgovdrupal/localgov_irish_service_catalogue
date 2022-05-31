@@ -239,6 +239,10 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      cache:
+        type: none
+      defaults:
+        cache: false
       display_description: ''
       display_extenders: {  }
       path: services

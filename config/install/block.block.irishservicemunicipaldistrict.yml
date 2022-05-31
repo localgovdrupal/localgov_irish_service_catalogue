@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.irish_service_municipal_district
+  module:
+    - facets
+    - system
+  theme:
+    - localgov_scarfolk
+id: irishservicemunicipaldistrict
+theme: localgov_scarfolk
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'facet_block:irish_service_municipal_district'
+settings:
+  id: 'facet_block:irish_service_municipal_district'
+  label: 'Irish Service Municipal District'
+  label_display: '0'
+  provider: facets
+  context_mapping: {  }
+  block_id: irishservicemunicipaldistrict
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /services

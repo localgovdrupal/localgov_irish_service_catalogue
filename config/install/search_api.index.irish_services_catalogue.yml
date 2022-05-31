@@ -2,6 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.localgov_irish_service_category
+    - field.storage.node.localgov_irish_service_municipal
+    - field.storage.node.localgov_irish_service_topic
+    - field.storage.node.localgov_irish_service_type
+    - field.storage.node.localgov_irish_service_user_type
     - search_api.server.irish_services_catalogue
     - core.entity_view_mode.node.search_index
   module:
@@ -12,6 +17,46 @@ name: 'Irish Services Catalogue'
 description: ''
 read_only: false
 field_settings:
+  localgov_irish_service_category:
+    label: 'Irish Service Category'
+    datasource_id: 'entity:node'
+    property_path: localgov_irish_service_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.localgov_irish_service_category
+  localgov_irish_service_municipal:
+    label: 'Irish Service Municipal District'
+    datasource_id: 'entity:node'
+    property_path: localgov_irish_service_municipal
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.localgov_irish_service_municipal
+  localgov_irish_service_topic:
+    label: 'Irish Service Topic'
+    datasource_id: 'entity:node'
+    property_path: localgov_irish_service_topic
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.localgov_irish_service_topic
+  localgov_irish_service_type:
+    label: 'Irish Service Type'
+    datasource_id: 'entity:node'
+    property_path: localgov_irish_service_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.localgov_irish_service_type
+  localgov_irish_service_user_type:
+    label: 'Irish Service User Type'
+    datasource_id: 'entity:node'
+    property_path: localgov_irish_service_user_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.localgov_irish_service_user_type
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item

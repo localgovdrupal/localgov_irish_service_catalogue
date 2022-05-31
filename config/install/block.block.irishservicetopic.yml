@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.irish_service_topic
+  module:
+    - facets
+    - system
+  theme:
+    - localgov_scarfolk
+id: irishservicetopic
+theme: localgov_scarfolk
+region: sidebar_first
+weight: -12
+provider: null
+plugin: 'facet_block:irish_service_topic'
+settings:
+  id: 'facet_block:irish_service_topic'
+  label: 'Irish Service Topic'
+  label_display: '0'
+  provider: facets
+  context_mapping: {  }
+  block_id: irishservicetopic
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /services
