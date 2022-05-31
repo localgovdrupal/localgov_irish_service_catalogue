@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.localgov_services_page.localgov_download_links
     - field.field.node.localgov_services_page.localgov_hide_related_topics
     - field.field.node.localgov_services_page.localgov_irish_service_category
+    - field.field.node.localgov_services_page.localgov_irish_service_lgma_id
     - field.field.node.localgov_services_page.localgov_irish_service_municipal
+    - field.field.node.localgov_services_page.localgov_irish_service_reference
     - field.field.node.localgov_services_page.localgov_irish_service_topic
     - field.field.node.localgov_services_page.localgov_irish_service_type
     - field.field.node.localgov_services_page.localgov_irish_service_user_type
@@ -97,6 +99,8 @@ third_party_settings:
         - localgov_irish_service_municipal
         - localgov_irish_service_type
         - localgov_irish_service_user_type
+        - localgov_irish_service_reference
+        - localgov_irish_service_lgma_id
       label: 'Irish Service Catalogue'
       region: content
       parent_name: group_tabs
@@ -155,6 +159,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  localgov_irish_service_lgma_id:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   localgov_irish_service_municipal:
     type: entity_reference_autocomplete
     weight: 9
@@ -162,6 +174,14 @@ content:
     settings:
       match_operator: CONTAINS
       match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  localgov_irish_service_reference:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }

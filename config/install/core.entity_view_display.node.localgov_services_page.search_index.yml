@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.localgov_services_page.localgov_download_links
     - field.field.node.localgov_services_page.localgov_hide_related_topics
     - field.field.node.localgov_services_page.localgov_irish_service_category
+    - field.field.node.localgov_services_page.localgov_irish_service_lgma_id
     - field.field.node.localgov_services_page.localgov_irish_service_municipal
+    - field.field.node.localgov_services_page.localgov_irish_service_reference
     - field.field.node.localgov_services_page.localgov_irish_service_topic
     - field.field.node.localgov_services_page.localgov_irish_service_type
     - field.field.node.localgov_services_page.localgov_irish_service_user_type
@@ -100,7 +102,9 @@ hidden:
   links: true
   localgov_hide_related_topics: true
   localgov_irish_service_category: true
+  localgov_irish_service_lgma_id: true
   localgov_irish_service_municipal: true
+  localgov_irish_service_reference: true
   localgov_irish_service_topic: true
   localgov_irish_service_type: true
   localgov_irish_service_user_type: true
