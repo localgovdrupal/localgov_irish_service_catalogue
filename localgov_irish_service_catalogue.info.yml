@@ -4,5 +4,8 @@ description: Creates service catalogue listings for Irish councils.
 package: LocalGov Drupal
 core: 8.x
 core_version_requirement: ^8 || ^9
+libraries:
+  - localgov_irish_service_catalogue/irish-service-catalogue
+  
 dependencies:
   - drupal:feeds

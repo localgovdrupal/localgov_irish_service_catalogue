@@ -1,0 +1,4 @@
+irish-service-catalogue:
+  css:
+    theme:
+      css/irish-service-catalogue.css: {}
