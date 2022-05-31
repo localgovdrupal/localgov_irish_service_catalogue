@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.irish_service_user_type
+  module:
+    - taxonomy
+label: 'Taxonomy: Irish Service User Type'
+id: taxonomy_irish_service_user_type
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:taxonomy_term'
+processor_configuration:
+  values:
+    vid: irish_service_user_type
+  langcode: en
+  insert_new: 1
+  update_existing: 0
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  usertype:
+    value: UserType
+    label: UserType
+    machine_name: usertype
+    type: csv
+mappings:
+  -
+    target: name
+    map:
+      value: usertype
+    settings:
+      language: null
+    unique:
+      value: '1'
