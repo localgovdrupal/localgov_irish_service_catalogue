@@ -8,4 +8,4 @@ libraries:
   - localgov_irish_service_catalogue/irish-service-catalogue
   
 dependencies:
-  - feeds:feeds
+  - drupal:feeds
