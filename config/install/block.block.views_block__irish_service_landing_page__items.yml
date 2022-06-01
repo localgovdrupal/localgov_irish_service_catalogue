@@ -1,0 +1,32 @@
+uuid: b499c0bb-84e2-43e0-a6a7-96f1d02f8b94
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.irish_service_landing_page_items
+  module:
+    - node
+    - views
+  theme:
+    - localgov_scarfolk
+id: views_block__irish_service_landing_page__items
+theme: localgov_scarfolk
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:irish_service_landing_page_items-irish_service_landing_page_items'
+settings:
+  id: 'views_block:irish_service_landing_page_items-irish_service_landing_page_items'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      localgov_services_landing: localgov_services_landing
