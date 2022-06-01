@@ -6,3 +6,7 @@ core: 8.x
 core_version_requirement: ^8 || ^9
 libraries:
   - localgov_irish_service_catalogue/irish-service-catalogue
+dependencies:
+  - search_api:search_api
+  - facets:facets
+  - search_api_db:search_api_db
