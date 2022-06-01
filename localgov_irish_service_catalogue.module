@@ -4,3 +4,83 @@
  * @file
  * Primary module hooks for Localgov Irish Service Catalogue module.
  */
+
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_modules_installed().
+ */
+function localgov_irish_service_catalogue_modules_installed($modules) {
+  $irish_services = in_array('localgov_irish_service_catalogue', $modules);
+  if ($irish_services) {
+    \Drupal::service('config.installer')->installOptionalConfig();
+    localgov_irish_service_catalogue_optional_fields_settings($irish_services);
+  }
+}
+
+/**
+ * Set form settings for optional Irish council services fields on installation.
+ *
+ * @param bool $irish_services
+ *   If localgov_services is (being) installed.
+ */
+function localgov_irish_service_catalogue_optional_fields_settings($irish_services) {
+  $properties = [
+    $properties_services_landing_page = [
+      'targetEntityType' => 'node',
+      'bundle' => 'localgov_services_landing_page',
+    ],
+    $properties_services_sub_landing_page = [
+      'targetEntityType' => 'node',
+      'bundle' => 'localgov_services_sublanding',
+    ],
+    $properties_services_page = [
+      'targetEntityType' => 'node',
+      'bundle' => ['localgov_services_page'],
+    ],
+  ];
+
+  foreach ($properties as $property) {
+    if ($form_displays = \Drupal::entityTypeManager()->getStorage('entity_form_display')->loadByProperties($property)) {
+      foreach ($form_displays as $form_display) {
+        assert($form_display instanceof EntityFormDisplayInterface);
+        if ($irish_services) {
+          $entity_reference_fields = [
+            'localgov_irish_service_category',
+            'localgov_irish_service_topic',
+            'localgov_irish_service_municipal',
+            'localgov_irish_service_type',
+            'localgov_irish_service_user_type',
+          ];
+        
+          $text_fields = [
+            'localgov_irish_service_reference',
+            'localgov_irish_service_lgma_id',
+          ];
+        
+          foreach ($entity_reference_fields as $entity_reference_field) {
+            $form_display->setComponent($entity_reference_field, [
+              'type' => 'entity_reference_autocomplete',
+              'region' => 'content',
+              'settings' => [
+                'match_operator' => 'CONTAINS',
+                'size' => '60',
+                'placeholder' => '',
+                'match_limit' => 10,
+              ],
+              'weight' => 51,
+            ])->save();
+          }
+        
+          foreach ($text_fields as $text_field) {
+            $form_display->setComponent($text_field, [
+              'type' => 'string_textfield',
+              'region' => 'content'
+            ])->save();
+          }
+        }
+      }
+    }
+  }
+}
