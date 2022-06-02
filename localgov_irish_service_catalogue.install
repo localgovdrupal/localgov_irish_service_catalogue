@@ -29,7 +29,6 @@ function localgov_irish_service_catalogue_install() {
     $group_irish_services->region = 'content';
     $group_irish_services->parent_name = 'group_tabs';
     $group_irish_services->weight = '100';
-
     $group_irish_services->children = [
       'localgov_irish_service_topic',
       'localgov_irish_service_category',
