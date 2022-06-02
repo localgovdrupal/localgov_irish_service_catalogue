@@ -29,7 +29,7 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
   $properties = [
     $properties_services_landing_page = [
       'targetEntityType' => 'node',
-      'bundle' => 'localgov_services_landing_page',
+      'bundle' => 'localgov_services_landing',
     ],
     $properties_services_sub_landing_page = [
       'targetEntityType' => 'node',
@@ -72,13 +72,14 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
               'weight' => 51,
             ])->save();
           }
-        
+
           foreach ($text_fields as $text_field) {
             $form_display->setComponent($text_field, [
               'type' => 'string_textfield',
               'region' => 'content'
             ])->save();
           }
+
         }
       }
     }
