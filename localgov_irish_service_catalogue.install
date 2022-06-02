@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Installation and update hooks for Localgov Irish Service Catalogue module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function localgov_irish_service_catalogue_install() {
+  // Since the core.entity_form_display.yml file already has a value in the DB for the services 
+  // content types, it does not get imported a second time on install. This means our tabs for 
+  // the 'Manage Form Display' page need to be created manually.
+  $bundles = [
+    'localgov_services_landing',
+    'localgov_services_sublanding',
+    'localgov_services_page',
+  ];
+
+  foreach ($bundles as $bundle) {
+    $group_irish_services = new stdClass;
+    $group_irish_services->group_name = 'group_irish_service_catalogue';
+    $group_irish_services->context = 'form';
+    $group_irish_services->entity_type = 'node';
+    $group_irish_services->bundle = $bundle;
+    $group_irish_services->mode = 'default';
+    $group_irish_services->label = 'Irish Service Catalogue';
+    $group_irish_services->region = 'content';
+    $group_irish_services->parent_name = 'group_tabs';
+    $group_irish_services->weight = '100';
+
+    $group_irish_services->children = [
+      'localgov_irish_service_topic',
+      'localgov_irish_service_category',
+      'localgov_irish_service_municipal',
+      'localgov_irish_service_type',
+      'localgov_irish_service_user_type',
+      'localgov_irish_service_lgma_id',
+      'localgov_irish_service_reference',
+    ];
+    $group_irish_services->format_type = 'tab';
+    $group_irish_services->format_settings = [
+      'classes' => '',
+      'show_empty_fields' => false,
+      'id' => '',
+      'formatter' => 'closed',
+      'description' => '',
+      'required_fields' => true,
+    ];
+    field_group_group_save($group_irish_services);
+  }
+}
