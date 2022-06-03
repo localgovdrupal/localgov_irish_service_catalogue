@@ -4,9 +4,6 @@
   "description": "LocalGov Drupal Irish Service Catalogue",
   "homepage": "https://github.com/localgovdrupal/localgov_irish_service_catalogue",
   "license": "GPL-2.0-or-later",
-  "require": {
-      "drupal/feeds": "^3.0-beta1"
-  },
   "require-dev": {
       "localgovdrupal/localgov_core": "^2.1"
   }
