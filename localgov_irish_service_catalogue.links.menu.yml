@@ -1,0 +1,5 @@
+localgov_irish_service_catalogue.settings:
+  title: Irish Council ID
+  parent: system.admin_config_system
+  route_name: localgov_irish_service_catalogue.settings
+  weight: 10

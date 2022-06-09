@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Localgov Irish Service Catalogue module.
+localgov_irish_service_catalogue.settings:
+  type: config_object
+  label: 'Localgov Irish Service Catalogue settings'
+  mapping:
+    example:
+      type: string
+      label: 'Irish Council ID'
