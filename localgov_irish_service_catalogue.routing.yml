@@ -4,4 +4,4 @@ localgov_irish_service_catalogue.settings:
     _title: 'Irish Council ID'
     _form: 'Drupal\localgov_irish_service_catalogue\Form\SettingsForm'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'administer localgov_irish_service_catalogue configuration'
