@@ -1,4 +1,4 @@
 administer localgov_irish_service_catalogue configuration:
-  title: 'Administer localgov_irish_service_catalogue configuration'
+  title: 'Administer Irish Service Catalogue'
   description: ''
   restrict access: false
