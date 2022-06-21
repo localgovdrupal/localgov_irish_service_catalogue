@@ -5,10 +5,3 @@ localgov_irish_service_catalogue.settings:
     _form: 'Drupal\localgov_irish_service_catalogue\Form\SettingsForm'
   requirements:
     _permission: 'Administer Irish Service Catalogue'
-localgov_irish_service_catalogue.import:
-  path: '/admin/config/services/irish-council-settings/import'
-  defaults:
-    _form:  '\Drupal\localgov_irish_service_catalogue\Form\runImport'
-    _title: 'Import Data from Irish Service Catalogue'
-  requirements:
-    _permission: 'Administer Irish Service Catalogue'
