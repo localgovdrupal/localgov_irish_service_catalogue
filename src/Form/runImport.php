@@ -2,6 +2,7 @@
 
 namespace Drupal\localgov_irish_service_catalogue\Form;
 
+use Drupal\localgov_irish_service_catalogue\Commands\LocalGovISCImportCommands;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -72,11 +73,37 @@ class runImport extends FormBase {
    *   Object describing the current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Line up the import to run on Cron
-    \Drupal::state()->set('localgov_irish_service_catalogue.run_import_next_execution', TRUE);
 
-    $message = 'Data will be been imported on next Cron run.';
-    $this->messenger()->addMessage($message);
+    $batch = [
+      'title'            => $this->t('Importing Data ...'),
+      'operations'       => [],
+      'init_message'     => $this->t('Commencing'),
+      'progress_message' => $this->t('Processed @current out of @total.'),
+      'error_message'    => $this->t('An error occurred during processing'),
+      'finished'         => '\Drupal\localgov_irish_service_catalogue\Batch\ServiceDataImport::ServiceDataImportFinished',
+    ];
+
+    $importer = new LocalGovISCImportCommands();
+    $endpoints = $importer->getEndpoints();
+    foreach($endpoints as $endpoint){
+      $data = $importer->get_data_file($endpoint);
+      $batch['operations'][] = [
+        '\Drupal\localgov_irish_service_catalogue\Batch\ServiceDataImport::ServiceDataImportFetchFile',
+        [$endpoint],
+      ];
+    }
+
+    $migration_ids = localgov_irish_service_catalogue_get_migrations();
+
+    // Run the migrations
+    foreach($migration_ids as $migration_id){
+      $batch['operations'][] = [
+        '\Drupal\localgov_irish_service_catalogue\Batch\ServiceDataImport::ServiceDataImportRunMigration',
+        [$migration_id],
+      ];
+    }
+
+    batch_set($batch);
   }
 
 }

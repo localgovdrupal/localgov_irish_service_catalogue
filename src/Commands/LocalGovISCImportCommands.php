@@ -18,7 +18,7 @@ use Drupal\Core\File\FileSystemInterface;
  */
 class LocalgovISCImportCommands extends DrushCommands {
 
-  /**
+    /**
    * Update source files from Legacy Web server
    *
    *
@@ -27,6 +27,17 @@ class LocalgovISCImportCommands extends DrushCommands {
    */
   public function getItems() {
 
+    $endpoints = $this->getEndpoints();
+    foreach($endpoints as $endpoint){
+      $data = $this->get_data_file($endpoint);
+    }
+
+  }
+  /**
+   * Generated Endpoint Defintions
+   *
+   */
+  public function getEndpoints() {
     $localAuthority = \Drupal::config('localgov_irish_service_catalogue.settings')->get('irish_council_id');
     $endpoints = [
      [
@@ -78,11 +89,7 @@ class LocalgovISCImportCommands extends DrushCommands {
         ]
       ],
     ];
-    $method = 'get';
-    foreach($endpoints as $endpoint){
-      $data = $this->get_data_file($endpoint);
-    }
-
+    return $endpoints;
   }
 
   public function get_data_file($endpoint) {

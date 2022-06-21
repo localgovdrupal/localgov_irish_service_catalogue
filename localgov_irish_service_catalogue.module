@@ -91,11 +91,7 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
   }
 }
 
-function localgov_irish_service_catalogue_run_import() {
-  // Import the files
-  $importer = new LocalGovISCImportCommands();
-  $importer->getItems();
-
+function localgov_irish_service_catalogue_get_migrations(){
   // List of migration_ids
   $migration_ids = [
     'localgov_isc_tax_user_type',
@@ -106,18 +102,30 @@ function localgov_irish_service_catalogue_run_import() {
     'localgov_isc_content_services',
     'localgov_isc_content_services_ga'
   ];
+  return $migration_ids;
+}
+
+function localgov_irish_service_catalogue_run_migration($migration_id){
+  $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
+
+  // Run with --update
+  $migration->getIdMap()->prepareUpdate();
+  $migration->setStatus(MigrationInterface::STATUS_IDLE);
+
+  $executable = new MigrateExecutable($migration, new MigrateMessage());
+  $executable->import();
+}
+
+function localgov_irish_service_catalogue_run_import() {
+  // Import the files
+  $importer = new LocalGovISCImportCommands();
+  $importer->getItems();
+
+  $migration_ids = localgov_irish_service_catalogue_get_migrations();
 
   // Run the migrations
   foreach($migration_ids as $migration_id){
-    $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
-
-    // Run with --update
-    $migration->getIdMap()->prepareUpdate();
-    $migration->setStatus(MigrationInterface::STATUS_IDLE);
-
-    $executable = new MigrateExecutable($migration, new MigrateMessage());
-    $executable->import();
-
+    localgov_irish_service_catalogue_run_migration($migration_id);
   }
 }
 
