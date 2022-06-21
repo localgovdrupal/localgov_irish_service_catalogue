@@ -9,7 +9,7 @@ source:
 
   ids:
     ReferenceCode:
-      type: integer
+      type: string
 
   item_selector: /data
 
@@ -86,7 +86,8 @@ process:
 
   localgov_irish_service_topic:
     source: Topic
-    plugin: entity_generate
+    plugin: entity_lookup
+    bundle_key: vid
     value_key: name
     bundle: irish_service_topic
     entity_type: taxonomy_term
@@ -94,7 +95,8 @@ process:
 
   localgov_irish_service_category:
     source: SubTopic
-    plugin: entity_generate
+    plugin: entity_lookup
+    bundle_key: vid
     value_key: name
     bundle: irish_service_category
     entity_type: taxonomy_term
@@ -102,7 +104,8 @@ process:
 
   localgov_irish_service_type:
     source: Type
-    plugin: entity_generate
+    plugin: entity_lookup
+    bundle_key: vid
     value_key: name
     bundle: irish_service_type
     entity_type: taxonomy_term
@@ -110,7 +113,8 @@ process:
 
   localgov_irish_service_user_type:
     source: UserType
-    plugin: entity_generate
+    plugin: entity_lookup
+    bundle_key: vid
     value_key: name
     bundle: irish_service_user_type
     entity_type: taxonomy_term
@@ -130,7 +134,7 @@ process:
     operator: '='
   # We pass it to a custom process plugin, to get the Subtopic ID (as its not in the source)
   - plugin: get_source_id
-  # And then we can do a lookup on the Sublanding migration to the get the Node ID
+  # And then we can do a lookup on the Landing migration to the get the Node ID
   - plugin: migration_lookup
     migration: localgov_isc_content_service_landing
 
@@ -141,4 +145,3 @@ migration_dependencies:
     - localgov_isc_tax_category
     - localgov_isc_tax_topic
     - localgov_isc_content_service_landing
-    - localgov_isc_content_service_sublanding

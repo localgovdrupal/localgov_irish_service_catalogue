@@ -9,7 +9,7 @@ source:
 
   ids:
     ReferenceCode:
-      type: integer
+      type: string
 
   item_selector: /data
 
