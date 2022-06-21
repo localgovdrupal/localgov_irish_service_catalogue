@@ -91,20 +91,6 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
   }
 }
 
-function localgov_irish_service_catalogue_get_migrations(){
-  // List of migration_ids
-  $migration_ids = [
-    'localgov_isc_tax_user_type',
-    'localgov_isc_tax_type',
-    'localgov_isc_tax_category',
-    'localgov_isc_tax_topic',
-    'localgov_isc_content_service_landing',
-    'localgov_isc_content_services',
-    'localgov_isc_content_services_ga'
-  ];
-  return $migration_ids;
-}
-
 function localgov_irish_service_catalogue_run_migration($migration_id){
   $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
 
@@ -114,37 +100,4 @@ function localgov_irish_service_catalogue_run_migration($migration_id){
 
   $executable = new MigrateExecutable($migration, new MigrateMessage());
   $executable->import();
-}
-
-function localgov_irish_service_catalogue_run_import() {
-  // Import the files
-  $importer = new LocalGovISCImportCommands();
-  $importer->getItems();
-
-  $migration_ids = localgov_irish_service_catalogue_get_migrations();
-
-  // Run the migrations
-  foreach($migration_ids as $migration_id){
-    localgov_irish_service_catalogue_run_migration($migration_id);
-  }
-}
-
-/**
- * Implements hook_cron().
- *
- * We implement hook_cron() to allow data to be fetched and imported.
- * But it will only actually run the task if the admins submit a form and clear a flag.
- *
- */
-function localgov_irish_service_catalogue_cron() {
-
-  // We usually don't want to act every time cron runs (which could be every
-  // minute) so check a flag to see if the data should be imported.
-  $fetch_data = \Drupal::state()->get('localgov_irish_service_catalogue.run_import_next_execution', 0);
-  if ($fetch_data) {
-    // Run the import
-    localgov_irish_service_catalogue_run_import();
-    // Reset the flag
-    \Drupal::state()->set('localgov_irish_service_catalogue.run_import_next_execution', FALSE);
-  }
 }

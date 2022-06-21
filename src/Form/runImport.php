@@ -93,7 +93,16 @@ class runImport extends FormBase {
       ];
     }
 
-    $migration_ids = localgov_irish_service_catalogue_get_migrations();
+    // List of migration_ids
+    $migration_ids = [
+      'localgov_isc_tax_user_type',
+      'localgov_isc_tax_type',
+      'localgov_isc_tax_category',
+      'localgov_isc_tax_topic',
+      'localgov_isc_content_service_landing',
+      'localgov_isc_content_services',
+      'localgov_isc_content_services_ga'
+    ];
 
     // Run the migrations
     foreach($migration_ids as $migration_id){
