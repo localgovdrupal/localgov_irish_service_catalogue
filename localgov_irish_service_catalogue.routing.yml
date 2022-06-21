@@ -1,7 +1,7 @@
 localgov_irish_service_catalogue.settings:
   path: '/admin/config/services/irish-council-settings'
   defaults:
-    _title: 'Irish Council ID'
+    _title: 'Irish Services Catalogue'
     _form: 'Drupal\localgov_irish_service_catalogue\Form\SettingsForm'
   requirements:
     _permission: 'Administer Irish Service Catalogue'
