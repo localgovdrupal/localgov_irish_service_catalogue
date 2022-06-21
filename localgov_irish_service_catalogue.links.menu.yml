@@ -1,5 +1,6 @@
 localgov_irish_service_catalogue.settings:
   title: Irish Council ID
-  parent: system.admin_config_system
+  parent: system.admin_config_services
+  description: 'Manage your import from LGMA service catalogue'
   route_name: localgov_irish_service_catalogue.settings
   weight: 10

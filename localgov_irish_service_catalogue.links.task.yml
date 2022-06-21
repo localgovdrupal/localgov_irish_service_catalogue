@@ -1,0 +1,10 @@
+localgov_irish_service_catalogue.settings:
+  title: 'Settings'
+  route_name: localgov_irish_service_catalogue.settings
+  base_route: localgov_irish_service_catalogue.settings
+
+localgov_irish_service_catalogue.import:
+  title: 'Import data'
+  route_name: localgov_irish_service_catalogue.import
+  base_route: localgov_irish_service_catalogue.settings
+  weight: 10
