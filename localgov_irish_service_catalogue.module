@@ -58,12 +58,12 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
             'localgov_irish_service_type',
             'localgov_irish_service_user_type',
           ];
-        
+
           $text_fields = [
             'localgov_irish_service_reference',
             'localgov_irish_service_lgma_id',
           ];
-        
+
           foreach ($entity_reference_fields as $entity_reference_field) {
             $form_display->setComponent($entity_reference_field, [
               'type' => 'entity_reference_autocomplete',
