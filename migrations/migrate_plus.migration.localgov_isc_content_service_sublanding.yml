@@ -1,0 +1,59 @@
+id: localgov_isc_content_service_sublanding
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalog Sub Landing Pages
+source:
+  urls: public://migrate/source/isc/getSubTopics-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    LGMASubTopicID:
+      type: string
+
+  item_selector: /data
+
+  fields:
+    -
+      name: LGMASubTopicID
+      label: 'LGMASubTopicID'
+      selector: LGMASubTopicID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+
+destination:
+  plugin: entity:node
+
+process:
+
+  langcode:
+    plugin: default_value
+    default_value: 'en'
+  type:
+    plugin: default_value
+    default_value: localgov_services_sublanding
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  title: Description
+
+  localgov_irish_service_category:
+    plugin: migration_lookup
+    source: LGMASubTopicID
+    migration: localgov_isc_tax_category
+
+  localgov_services_parent:
+    plugin: migration_lookup
+    source: SubTopic
+    migration: localgov_isc_content_service_sublanding
+
+migration_dependencies:
+  required:
+    - localgov_isc_tax_topic
+    - localgov_isc_tax_category
+    - localgov_isc_content_service_landing

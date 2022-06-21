@@ -1,0 +1,33 @@
+id: localgov_isc_tax_topic
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalog Topics
+source:
+  urls: public://migrate/source/isc/getTopics-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    LGMATopicID:
+      type: string
+
+  item_selector: /data
+
+  fields:
+    -
+      name: LGMATopicID
+      label: 'LGMATopicID'
+      selector: LGMATopicID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+
+destination:
+  plugin: entity:taxonomy_term
+
+process:
+  vid:
+    plugin: default_value
+    default_value: irish_service_topic
+  name: Description

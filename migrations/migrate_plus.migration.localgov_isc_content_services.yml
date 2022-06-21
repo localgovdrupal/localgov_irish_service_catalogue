@@ -1,0 +1,144 @@
+id: localgov_isc_content_services
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalog Services
+source:
+  urls: public://migrate/source/isc/getServices-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    ReferenceCode:
+      type: integer
+
+  item_selector: /data
+
+  fields:
+    -
+      name: Name
+      label: 'Name'
+      selector: Name
+    -
+      name: ReferenceCode
+      label: 'ReferenceCode'
+      selector: ReferenceCode
+    -
+      name: full_title_trimmed
+      label: 'full_title_trimmed'
+      selector: module/full_title_trimmed
+    -
+      name: ReferenceID
+      label: 'ReferenceID'
+      selector: ReferenceID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+    -
+      name: Type
+      label: 'Type'
+      selector: Type
+    -
+      name: Topic
+      label: 'Topic'
+      selector: Topic
+    -
+      name: SubTopic
+      label: 'SubTopic'
+      selector: SubTopic
+    -
+      name: UserType
+      label: 'UserType'
+      selector: UserType
+    -
+      name: description
+      label: 'description'
+      selector: module/description
+    -
+      name: EnglishEquivalent
+      label: 'EnglishEquivalent'
+      selector: EnglishEquivalent
+    -
+      name: IrishEquivalent
+      label: 'IrishEquivalent'
+      selector: IrishEquivalent
+
+destination:
+  plugin: entity:node
+
+process:
+
+  langcode:
+    plugin: default_value
+    default_value: 'en'
+  type:
+    plugin: default_value
+    default_value: localgov_services_page
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  title: Name
+
+  body/value: Description
+
+  localgov_irish_service_topic:
+    source: Topic
+    plugin: entity_generate
+    value_key: name
+    bundle: irish_service_topic
+    entity_type: taxonomy_term
+    ignore_case: true
+
+  localgov_irish_service_category:
+    source: SubTopic
+    plugin: entity_generate
+    value_key: name
+    bundle: irish_service_category
+    entity_type: taxonomy_term
+    ignore_case: true
+
+  localgov_irish_service_type:
+    source: Type
+    plugin: entity_generate
+    value_key: name
+    bundle: irish_service_type
+    entity_type: taxonomy_term
+    ignore_case: true
+
+  localgov_irish_service_user_type:
+    source: UserType
+    plugin: entity_generate
+    value_key: name
+    bundle: irish_service_user_type
+    entity_type: taxonomy_term
+    ignore_case: true
+
+  localgov_irish_service_lgma_id: ReferenceID
+
+  # We get the Entity id for the Taxonomy term for Subtopic
+  localgov_services_parent:
+  - plugin: entity_lookup
+    source: Topic
+    value_key: name
+    bundle_key: vid
+    bundle: irish_service_topic
+    entity_type: taxonomy_term
+    ignore_case: true
+    operator: '='
+  # We pass it to a custom process plugin, to get the Subtopic ID (as its not in the source)
+  - plugin: get_source_id
+  # And then we can do a lookup on the Sublanding migration to the get the Node ID
+  - plugin: migration_lookup
+    migration: localgov_isc_content_service_landing
+
+migration_dependencies:
+  required:
+    - localgov_isc_tax_user_type
+    - localgov_isc_tax_type
+    - localgov_isc_tax_category
+    - localgov_isc_tax_topic
+    - localgov_isc_content_service_landing
+    - localgov_isc_content_service_sublanding

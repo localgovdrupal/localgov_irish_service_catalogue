@@ -1,0 +1,97 @@
+id: localgov_isc_content_services_ga
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalog Services GA
+source:
+  urls: public://migrate/source/isc/getServices-ga.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    ReferenceCode:
+      type: integer
+
+  item_selector: /data
+
+  fields:
+    -
+      name: Name
+      label: 'Name'
+      selector: Name
+    -
+      name: ReferenceCode
+      label: 'ReferenceCode'
+      selector: ReferenceCode
+    -
+      name: full_title_trimmed
+      label: 'full_title_trimmed'
+      selector: module/full_title_trimmed
+    -
+      name: ReferenceID
+      label: 'ReferenceID'
+      selector: ReferenceID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+    -
+      name: Type
+      label: 'Type'
+      selector: Type
+    -
+      name: Topic
+      label: 'Topic'
+      selector: Topic
+    -
+      name: SubTopic
+      label: 'SubTopic'
+      selector: SubTopic
+    -
+      name: UserType
+      label: 'UserType'
+      selector: UserType
+    -
+      name: description
+      label: 'description'
+      selector: module/description
+    -
+      name: EnglishEquivalent
+      label: 'EnglishEquivalent'
+      selector: EnglishEquivalent
+    -
+      name: IrishEquivalent
+      label: 'IrishEquivalent'
+      selector: IrishEquivalent
+
+destination:
+  plugin: entity:node
+  translations: true
+  destination_module: content_translation
+
+process:
+
+  langcode:
+    plugin: default_value
+    default_value: 'ga'
+
+  nid:
+    plugin: migration_lookup
+    source: ReferenceCode
+    migration: localgov_isc_content_services
+
+  type:
+    plugin: default_value
+    default_value: localgov_services_page
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  title: Name
+
+  body/value: Description
+
+migration_dependencies:
+  required:
+    - localgov_isc_content_services
