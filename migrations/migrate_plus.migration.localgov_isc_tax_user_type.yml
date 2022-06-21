@@ -1,6 +1,6 @@
 id: localgov_isc_tax_user_type
 migration_group: localgov_isc
-label: LocalGov Irish Service Catalog User Types
+label: LocalGov Irish Service Catalogue User Types
 source:
   urls: public://migrate/source/isc/getUserTypes-en.json
   plugin: url

@@ -1,6 +1,6 @@
 id: localgov_isc_tax_topic
 migration_group: localgov_isc
-label: LocalGov Irish Service Catalog Topics
+label: LocalGov Irish Service Catalogue Topics
 source:
   urls: public://migrate/source/isc/getTopics-en.json
   plugin: url

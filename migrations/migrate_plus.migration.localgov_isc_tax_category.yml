@@ -1,6 +1,6 @@
 id: localgov_isc_tax_category
 migration_group: localgov_isc
-label: LocalGov Irish Service Catalog Categories (Sub Topics)
+label: LocalGov Irish Service Catalogue Categories (Sub Topics)
 source:
   urls: public://migrate/source/isc/getSubTopics-en.json
   plugin: url

@@ -1,6 +1,6 @@
 id: localgov_isc_content_service_landing
 migration_group: localgov_isc
-label: LocalGov Irish Service Catalog Landing Pages
+label: LocalGov Irish Service Catalogue Landing Pages
 source:
   urls: public://migrate/source/isc/getTopics-en.json
   plugin: url

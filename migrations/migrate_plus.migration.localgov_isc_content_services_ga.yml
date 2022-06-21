@@ -1,6 +1,6 @@
 id: localgov_isc_content_services_ga
 migration_group: localgov_isc
-label: LocalGov Irish Service Catalog Services GA
+label: LocalGov Irish Service Catalogue Services GA
 source:
   urls: public://migrate/source/isc/getServices-ga.json
   plugin: url
