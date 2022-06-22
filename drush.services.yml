@@ -1,0 +1,5 @@
+services:
+  ul_ulris_programme_import.commands:
+    class: \Drupal\localgov_irish_service_catalogue\Commands\LocalGovISCImportCommands
+    tags:
+      - { name: drush.command }

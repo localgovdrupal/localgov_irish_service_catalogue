@@ -4,7 +4,26 @@
   "description": "LocalGov Drupal Irish Service Catalogue",
   "homepage": "https://github.com/localgovdrupal/localgov_irish_service_catalogue",
   "license": "GPL-2.0-or-later",
-  "require-dev": {
-      "localgovdrupal/localgov_core": "^2.1"
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "installer-paths": {
+    "web/modules/contrib/{$name}": [
+      "type:drupal-module"
+    ]
+  },
+  "extra": {
+    "drush": {
+        "services": {
+            "drush.services.yml": "^10"
+        }
+    }
+  },
+  "require": {
+    "drupal/migrate_plus": "^6.0",
+    "drupal/migrate_tools": "^6.0"
   }
 }

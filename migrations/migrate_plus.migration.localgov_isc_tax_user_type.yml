@@ -1,0 +1,33 @@
+id: localgov_isc_tax_user_type
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalogue User Types
+source:
+  urls: public://migrate/source/isc/getUserTypes-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    LGMAServiceUserTypeID:
+      type: string
+
+  item_selector: /data
+
+  fields:
+    -
+      name: LGMAServiceUserTypeID
+      label: 'LGMAServiceUserTypeID'
+      selector: LGMAServiceUserTypeID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+
+destination:
+  plugin: entity:taxonomy_term
+
+process:
+  vid:
+    plugin: default_value
+    default_value: irish_service_user_type
+  name: Description

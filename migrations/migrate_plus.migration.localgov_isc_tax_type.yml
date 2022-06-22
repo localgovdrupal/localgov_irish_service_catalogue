@@ -1,0 +1,33 @@
+id: localgov_isc_tax_type
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalogue Types
+source:
+  urls: public://migrate/source/isc/getTypes-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    LGMAServiceTypeID:
+      type: string
+
+  item_selector: /data
+
+  fields:
+    -
+      name: LGMAServiceTypeID
+      label: 'LGMAServiceTypeID'
+      selector: LGMAServiceTypeID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+
+destination:
+  plugin: entity:taxonomy_term
+
+process:
+  vid:
+    plugin: default_value
+    default_value: irish_service_type
+  name: Description

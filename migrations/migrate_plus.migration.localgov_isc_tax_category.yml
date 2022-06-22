@@ -1,0 +1,33 @@
+id: localgov_isc_tax_category
+migration_group: localgov_isc
+label: LocalGov Irish Service Catalogue Categories (Sub Topics)
+source:
+  urls: public://migrate/source/isc/getSubTopics-en.json
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  ids:
+    LGMASubTopicID:
+      type: string
+
+  item_selector: /data
+
+  fields:
+    -
+      name: LGMASubTopicID
+      label: 'LGMASubTopicID'
+      selector: LGMASubTopicID
+    -
+      name: Description
+      label: 'Description'
+      selector: Description
+
+destination:
+  plugin: entity:taxonomy_term
+
+process:
+  vid:
+    plugin: default_value
+    default_value: irish_service_category
+  name: Description

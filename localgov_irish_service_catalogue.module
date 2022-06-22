@@ -7,6 +7,11 @@
 
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\migrate_tools\MigrateExecutable;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\MigrateMessage;
+use Drupal\localgov_irish_service_catalogue\Commands\LocalGovISCImportCommands;
+
 
 /**
  * Implements hook_modules_installed().
@@ -53,12 +58,12 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
             'localgov_irish_service_type',
             'localgov_irish_service_user_type',
           ];
-        
+
           $text_fields = [
             'localgov_irish_service_reference',
             'localgov_irish_service_lgma_id',
           ];
-        
+
           foreach ($entity_reference_fields as $entity_reference_field) {
             $form_display->setComponent($entity_reference_field, [
               'type' => 'entity_reference_autocomplete',
@@ -84,4 +89,15 @@ function localgov_irish_service_catalogue_optional_fields_settings($irish_servic
       }
     }
   }
+}
+
+function localgov_irish_service_catalogue_run_migration($migration_id){
+  $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
+
+  // Run with --update
+  $migration->getIdMap()->prepareUpdate();
+  $migration->setStatus(MigrationInterface::STATUS_IDLE);
+
+  $executable = new MigrateExecutable($migration, new MigrateMessage());
+  $executable->import();
 }
