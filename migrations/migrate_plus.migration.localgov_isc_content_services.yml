@@ -83,6 +83,7 @@ process:
   title: Name
 
   body/value: Description
+  body/summary: Description
 
   localgov_irish_service_topic:
     source: Topic

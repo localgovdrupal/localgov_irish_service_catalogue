@@ -91,6 +91,7 @@ process:
   title: Name
 
   body/value: Description
+  body/summary: Description
 
 migration_dependencies:
   required:
