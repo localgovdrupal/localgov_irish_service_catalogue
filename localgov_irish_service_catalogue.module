@@ -101,3 +101,22 @@ function localgov_irish_service_catalogue_run_migration($migration_id){
   $executable = new MigrateExecutable($migration, new MigrateMessage());
   $executable->import();
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function localgov_irish_service_catalogue_preprocess_block(&$variables) {
+  $blocks = [
+    'irish_service_type',
+    'irish_service_topic',
+    'irish_service_category',
+    'irish_service_user_type',
+    'irish_service_municipal_district',
+  ];
+
+  if (in_array($variables['derivative_plugin_id'], $blocks )) {
+    $variables['attributes']['class'][] = 'block-irish-service-catalogue';
+    $variables['content'][0]['#attached']['library'][] = 'localgov_irish_service_catalogue/irish-service-catalogue';
+  }
+  
+}
