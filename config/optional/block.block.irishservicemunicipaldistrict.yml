@@ -11,7 +11,7 @@ dependencies:
 id: irishservicemunicipaldistrict
 theme: localgov_scarfolk
 region: sidebar_first
-weight: -9
+weight: -6
 provider: null
 plugin: 'facet_block:irish_service_municipal_district'
 settings:

@@ -11,7 +11,7 @@ dependencies:
 id: irishservicetype
 theme: localgov_scarfolk
 region: sidebar_first
-weight: -11
+weight: -8
 provider: null
 plugin: 'facet_block:irish_service_type'
 settings:
