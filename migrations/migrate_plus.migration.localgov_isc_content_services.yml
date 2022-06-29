@@ -122,6 +122,7 @@ process:
     ignore_case: true
 
   localgov_irish_service_lgma_id: ReferenceID
+  localgov_irish_service_reference: ReferenceCode
 
   # We get the Entity id for the Taxonomy term for Subtopic
   localgov_services_parent:
